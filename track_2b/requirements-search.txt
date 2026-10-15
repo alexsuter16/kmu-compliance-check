@@ -1,0 +1,7 @@
+# Zusatz für die Entwicklung: freie Suche (retrieval.py) und Report-PDF (docs/report_pdf.py).
+# Nicht im Docker-Image – die Prüfung braucht diese Pakete nicht.
+-r requirements.txt
+rank_bm25==0.2.2
+sentence-transformers==6.0.1
+pypdf==6.18.1
+markdown-it-py==4.2.0

@@ -1,60 +1,52 @@
-# Hack Apertus — project template
+# KMU-Compliance-Check
 
-Template repository for [Hack Apertus](https://hackapertus.ch/) submissions.
-Every project keeps almost the same layout, so organizers and judges find the
-same things in the same place.
+A sovereign compliance pre-check for Swiss online shops. It reads a shop's public pages, checks
+**18 legal points under Swiss law** (legal notice, order process, prices, data protection,
+advertising claims, terms) and returns a **score from 0 to 100 with a traffic light**. Every
+finding comes with the legal basis, a quote from the shop that code has verified, and a concrete
+fix. **Apertus 1.5** makes every judgement; it runs wherever Apertus runs – on-premise,
+air-gapped or in a Swiss cloud.
 
-## Select your track
+Hack Apertus 2026 · Track 2B (own project) · Alex Suter (solo).
 
-This repository holds one example project per track:
-
-- `track_1a/`
-- `track_1b/`
-- `track_2a/`
-- `track_2b/`
-
-Keep the directory for the track you are competing in **exactly as it is** —
-don't rename it or move its files — and delete the other track directories.
-That directory is your project root. Keep the files and directories as shown
-below.
-
-## The structure
-
-| Path | What it is |
-| --- | --- |
-| `README.md` | The challenge description and submission requirements for your track |
-| `technical_report.md` | The deeper write-up: architecture, evaluation, limitations |
-| `Makefile` | `make run` must spin up your project |
-| `src/` | Your code |
-| `data/` | Datasets — `track_1a`, `track_2a` and `track_2b` only; max. 100 MB |
-| `findings/` | Issue files — `track_1a` only |
-| `docs/` | Diagrams, notes, longer write-ups |
+> Pre-check, not legal advice.
 
 ## Run it
 
-Judges run `make run` from the root of the project, on a clean checkout:
+The project lives in [`track_2b/`](track_2b/) as the template requires.
 
 ```bash
-make run
+cd track_2b
+export LLM_NAME=swiss-ai/apertus-v1.5-8b LLM_BASE_URL=<endpoint> LLM_API_KEY=<key>
+make run                                # Docker: web UI on http://localhost:7860
+make demo SHOP=testshop:velowerk        # Docker: one check, report in the terminal
 ```
 
-`make run` is expected to run the project using Docker, since that
-is how the judges will run it.
-- If you used other local open-weight models, include instructions for running the project in your technical report.
-- Use the following environment variables:
-```
-LLM_NAME — name and version of the model
-LLM_BASE_URL — endpoint base URL
-LLM_API_KEY — your API key
-```
+`make run` also works from this folder; it forwards to `track_2b/`.
 
-## Getting started
+## Results in one table
 
-1. Click **Use this template** to create your own repository.
-2. Delete the other track directories. Don't rename or restructure yours.
-3. Read its `README.md` and fill in `technical_report.md`.
-4. Make `make run` work from the root of the project, on a clean checkout.
+| Measured on | Result |
+|---|---|
+| 8 fictional test shops, 37 planted defects | 86 % of defects found, 89 % precision, prompt-injection test passed |
+| 21 real Swiss shops, every verdict audited on the live site | agreement 63 % → 72 % after the audit fixes, false alarms 48 → 25 |
+| 10 new real shops, audited blind (hold-out) | 63 % agreement, 55 % of clear defects found, 63 % of reported defects real |
+| Cost | about USD 0.01 per real shop at list price |
+
+Details: [evaluation](track_2b/docs/evaluation.md) · [technical report](track_2b/technical_report.md)
+([PDF](track_2b/AlexSuter_Report.pdf)).
+
+## Where to find what
+
+| Path | What it is |
+|---|---|
+| [`track_2b/README.md`](track_2b/README.md) | Project README: how it works, code map, commands, how each hackathon requirement is met |
+| [`track_2b/technical_report.md`](track_2b/technical_report.md) | Architecture, use of Apertus, evaluation, limitations |
+| [`track_2b/docs/bauplan.html`](track_2b/docs/bauplan.html) | Illustrated explainer written like a Swiss statute (German) |
+| [`track_2b/docs/evaluation.md`](track_2b/docs/evaluation.md) | All measurement results |
+| `track_2b/src/` · `data/` · `tests/` | Code, checklist, statutes, test shops, unit tests |
 
 ## License
 
-All Hack Apertus projects are open-sourced. Please check our Terms & Conditions for specific licensing details (6. What you build is open source): https://hackapertus.ch/terms-and-conditions
+Code: Apache-2.0 ([LICENSE](LICENSE)). Documentation and checklist: CC-BY-4.0. Test shops:
+CDLA-Permissive-2.0. Statutes: official enactments, free to use (Art. 5 URG).

@@ -1,0 +1,32 @@
+{
+  "name": "Spielwaren Petra Muster (Einzelfirma)",
+  "branche": "Holzspielzeug",
+  "sprache": "de",
+  "rolle": "Sehr kleiner Shop ohne Rechtstexte: sollte rot werden",
+  "eingebaute_maengel": [
+    "Impressum ohne E-Mail-Adresse",
+    "Keine AGB, Bestellablauf nirgends beschrieben",
+    "Keine Datenschutzerklärung, obwohl Shopify und PayPal genutzt werden",
+    "Keine Angaben zu Cookies"
+  ],
+  "erwartet": {
+    "impressum_identitaet": "teilweise",
+    "firma_handelsregister": "erfuellt",
+    "bestellschritte": "fehlt",
+    "eingabefehler": "unklar",
+    "bestellbestaetigung": "unklar",
+    "preise_chf": "erfuellt",
+    "preise_zuschlaege": "erfuellt",
+    "streichpreise": "nicht_anwendbar",
+    "datenschutz_grundinfo": "fehlt",
+    "datenschutz_ausland": "fehlt",
+    "tracking_transparenz": "fehlt",
+    "newsletter_einwilligung": "nicht_anwendbar",
+    "irrefuehrende_angaben": "erfuellt",
+    "klima_claims": "nicht_anwendbar",
+    "swissness": "nicht_anwendbar",
+    "agb_fairness": "nicht_anwendbar",
+    "agb_verfuegbar": "fehlt",
+    "eu_vorlagen": "nicht_anwendbar"
+  }
+}

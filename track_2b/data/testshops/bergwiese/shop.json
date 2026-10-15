@@ -1,0 +1,37 @@
+{
+  "name": "Musterladen Bergwiese GmbH",
+  "branche": "Naturkosmetik",
+  "sprache": "de",
+  "rolle": "Beispiel-Shop aus dem Bauplan (Art. 1 und 11): typische Mängel eines kleinen Shops",
+  "eingebaute_maengel": [
+    "Impressum nur mit Kontaktformular, ohne Adresse und E-Mail",
+    "Firma ohne Rechtsform und UID",
+    "Dauer-Streichpreise («Dauertiefpreise … statt CHF 49.90»)",
+    "Bearbeitungsgebühr CHF 2.50 nicht im Preis",
+    "Datenschutzerklärung ohne Angaben zur Übermittlung ins Ausland (Google Analytics, Shop-Plattform)",
+    "Cookies erwähnt, aber keine Ablehnungsmöglichkeit",
+    "Unbelegter Superlativ «das wirksamste Serum auf dem Markt»",
+    "«100 % klimaneutral» ohne Grundlage",
+    "Widerrufsrecht nach deutschem BGB statt Schweizer Recht"
+  ],
+  "erwartet": {
+    "impressum_identitaet": "fehlt",
+    "firma_handelsregister": "teilweise",
+    "bestellschritte": "erfuellt",
+    "eingabefehler": "unklar",
+    "bestellbestaetigung": "erfuellt",
+    "preise_chf": "erfuellt",
+    "preise_zuschlaege": "teilweise",
+    "streichpreise": "fehlt",
+    "datenschutz_grundinfo": "erfuellt",
+    "datenschutz_ausland": "fehlt",
+    "tracking_transparenz": "teilweise",
+    "newsletter_einwilligung": "erfuellt",
+    "irrefuehrende_angaben": "teilweise",
+    "klima_claims": "fehlt",
+    "swissness": "nicht_anwendbar",
+    "agb_fairness": "erfuellt",
+    "agb_verfuegbar": "erfuellt",
+    "eu_vorlagen": "fehlt"
+  }
+}

@@ -1,0 +1,9 @@
+# Laufzeit: alles, was die Prüfung und die Oberfläche brauchen (auch im Docker-Image).
+# Feste Versionen, damit das Image überall gleich gebaut wird.
+langchain-core==1.6.9
+langchain-openai==1.6.2
+langgraph==1.2.11
+openai==3.14.0
+python-dotenv==1.2.3
+requests==2.34.2
+gradio==6.27.0

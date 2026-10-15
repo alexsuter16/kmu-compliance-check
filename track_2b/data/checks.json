@@ -1,0 +1,629 @@
+{
+  "version": "0.1",
+  "note": "Prüfkatalog für Online-Shops nach Schweizer Recht. Vorprüfung, keine Rechtsberatung. Jede Rechtsgrundlage ist gegen fedlex (Stand siehe sources.json) geprüft. «fehlt_ohne_beleg»: Ersatz-Status, wenn das Modell «fehlt» ohne wörtliches Zitat meldet; fehlt das Feld, bleibt «fehlt» stehen (z.B. fehlendes Impressum: Was fehlt, lässt sich nicht zitieren). Bei Abläufen wird es «unklar»; bei Prüfpunkten, die nur bei einer bestimmten Aussage greifen (Klima, Swissness, Streichpreise), «nicht_anwendbar». Ist eine Seite eines Prüfpunkts nicht einsehbar (z.B. der Checkout), wird ein «fehlt» ohne Zitat «unklar». «pages»: Reihenfolge = Wichtigkeit; das Modell bekommt die Seiten in dieser Reihenfolge, die erste ist die Hauptseite. «ausloeser»: regulärer Ausdruck (Gross-/Kleinschreibung egal). Passt er auf eine Zeile von Startseite, Footer oder Produktseite, ist der Punkt nicht «nicht_anwendbar»; passt er auf keine Seite des Prüfpunkts, gibt es auch keinen Mangel. Bei «streichpreise» erkennt er u.a. zwei verschiedene Preise direkt hintereinander («CHF 39.90 CHF 29.90»), «statt CHF …», «UVP» und «-20 %». «stichwoerter»: bei langen Seiten kommen nur der Anfang und die Abschnitte mit diesen Wörtern in den Prompt.",
+  "scoring": {
+    "status_points": {
+      "erfuellt": 1.0,
+      "teilweise": 0.5,
+      "unklar": 0.5,
+      "fehlt": 0.0
+    },
+    "excluded_status": [
+      "nicht_anwendbar"
+    ],
+    "traffic_light": {
+      "gruen": 80,
+      "gelb": 50
+    }
+  },
+  "page_types": {
+    "startseite": [
+      "/",
+      "home"
+    ],
+    "impressum": [
+      "impressum",
+      "imprint",
+      "mentions-legales",
+      "colophon",
+      "about",
+      "ueber-uns",
+      "kontakt",
+      "contact",
+      "legal-notice",
+      "rechtliches",
+      "legal",
+      "note-legali",
+      "informazioni-legali",
+      "kontaktinformationen",
+      "contact-information",
+      "chi-siamo",
+      "a-propos",
+      "qui-sommes-nous",
+      "company-information",
+      "uber-uns",
+      "smallprint",
+      "rechtliche-hinweise",
+      "legal-information"
+    ],
+    "datenschutz": [
+      "datenschutz",
+      "privacy",
+      "protection-des-donnees",
+      "confidentialite",
+      "politique-de-confidentialite",
+      "protezione-dei-dati",
+      "informativa-privacy",
+      "datenschutzerklaerung",
+      "cookie"
+    ],
+    "agb": [
+      "agb",
+      "terms",
+      "conditions",
+      "cgv",
+      "allgemeine-geschaeftsbedingungen",
+      "terms-of-service",
+      "geschaeftsbedingungen",
+      "conditions-generales",
+      "condizioni-generali",
+      "cgc"
+    ],
+    "versand": [
+      "versand",
+      "shipping",
+      "lieferung",
+      "livraison",
+      "zahlung",
+      "payment",
+      "faq",
+      "rueckgabe",
+      "returns",
+      "refund",
+      "widerruf",
+      "lieferbedingungen",
+      "faqs",
+      "spedizione",
+      "consegna",
+      "retour",
+      "retours",
+      "resi",
+      "rucknahme",
+      "ruecknahme",
+      "rueckerstattung",
+      "ruckerstattung",
+      "erstattung"
+    ],
+    "produkt": [
+      "products/",
+      "produkt",
+      "product",
+      "shop/",
+      "/p/"
+    ],
+    "checkout": [
+      "checkout",
+      "warenkorb",
+      "cart"
+    ],
+    "footer": [],
+    "newsletter": [
+      "newsletter",
+      "abonnieren",
+      "subscribe",
+      "iscriviti",
+      "inscription-newsletter"
+    ]
+  },
+  "checks": [
+    {
+      "id": "impressum_identitaet",
+      "area": "Impressum & Anbieter",
+      "title": "Identität und Kontaktadresse inkl. E-Mail",
+      "kind": "muss",
+      "weight": 3,
+      "legal_refs": [
+        "UWG Art. 3 Abs. 1 lit. s"
+      ],
+      "pages": [
+        "impressum",
+        "footer",
+        "agb",
+        "datenschutz",
+        "startseite"
+      ],
+      "question": "Macht der Shop klare und vollständige Angaben über seine Identität (Name bzw. Firma, physische Postadresse) und eine Kontaktadresse einschliesslich E-Mail-Adresse? Ein reines Kontaktformular oder nur ein Postfach genügt nicht. Stehen die Angaben nur in der Datenschutzerklärung oder in den AGB, aber nicht in einem Impressum oder auf einer Kontaktseite, ist der Status «teilweise».",
+      "fix_hint": "Impressum mit vollständiger Firma, Strasse, PLZ/Ort, Land und E-Mail-Adresse ergänzen und von jeder Seite (Footer) verlinken.",
+      "stichwoerter": [
+        "gmbh",
+        " ag",
+        "sàrl",
+        " sa",
+        "che-",
+        "handelsregister",
+        "@",
+        "strasse",
+        "verantwortlich",
+        "impressum",
+        "kontakt",
+        "adresse"
+      ]
+    },
+    {
+      "id": "firma_handelsregister",
+      "area": "Impressum & Anbieter",
+      "title": "Firma wie im Handelsregister, UID",
+      "kind": "kann",
+      "weight": 1,
+      "legal_refs": [
+        "OR Art. 954a Abs. 1"
+      ],
+      "pages": [
+        "impressum",
+        "footer",
+        "agb"
+      ],
+      "question": "Wird der Firmenname vollständig und unverändert (inkl. Rechtsform wie AG, GmbH) angegeben, wie er im Handelsregister eingetragen wäre? Ist eine UID (CHE-xxx.xxx.xxx) angegeben? Bei Einzelfirmen ohne Eintrag genügt der volle Name. Ein Einzelunternehmen hat keine Rechtsform wie AG oder GmbH; fehlt nur die Rechtsform bei einem Einzelunternehmen, ist das kein Mangel. Ist die UID angegeben, ist der Status mindestens «teilweise». Fehlt bei einer AG oder GmbH nur die UID (CHE-…), ist der Status «teilweise».",
+      "fix_hint": "Firma exakt wie im Handelsregister schreiben (inkl. Rechtsform) und die UID ins Impressum aufnehmen.",
+      "stichwoerter": [
+        "gmbh",
+        " ag",
+        "sàrl",
+        " sa",
+        "che-",
+        "handelsregister",
+        "@",
+        "strasse",
+        "verantwortlich",
+        "impressum",
+        "kontakt",
+        "adresse"
+      ]
+    },
+    {
+      "id": "bestellschritte",
+      "area": "E-Commerce-Pflichten",
+      "title": "Hinweis auf die technischen Schritte zum Vertragsschluss",
+      "kind": "muss",
+      "weight": 2,
+      "legal_refs": [
+        "UWG Art. 3 Abs. 1 lit. s"
+      ],
+      "pages": [
+        "agb",
+        "versand",
+        "checkout"
+      ],
+      "question": "Weist der Shop auf die einzelnen technischen Schritte hin, die zum Vertragsabschluss führen (z.B. Warenkorb, Adresse, Zahlung, Bestellung absenden, wann der Vertrag zustande kommt)? Wird der Bestellablauf nirgends beschrieben, ist der Status «fehlt».",
+      "fix_hint": "In AGB oder FAQ einen Abschnitt «Bestellablauf / Vertragsschluss» ergänzen, der die Schritte und den Zeitpunkt des Vertragsschlusses beschreibt.",
+      "stichwoerter": [
+        "bestell",
+        "vertrag",
+        "warenkorb",
+        "kasse",
+        "button",
+        "zustande",
+        "annahme",
+        "order",
+        "commande"
+      ]
+    },
+    {
+      "id": "eingabefehler",
+      "area": "E-Commerce-Pflichten",
+      "title": "Eingabefehler vor der Bestellung erkennen und korrigieren",
+      "kind": "muss",
+      "weight": 2,
+      "legal_refs": [
+        "UWG Art. 3 Abs. 1 lit. s"
+      ],
+      "pages": [
+        "agb",
+        "versand",
+        "checkout"
+      ],
+      "question": "Gibt es Hinweise, dass Kundinnen ihre Eingaben vor Abgabe der Bestellung überprüfen und korrigieren können (z.B. Bestellübersicht vor dem Absenden, Warenkorb bearbeitbar)? Wenn die Checkout-Seite nicht vorliegt und nichts dazu erwähnt wird, ist der Status «unklar». Eine Bestellübersicht vor dem Absenden oder der Hinweis, Eingaben vor dem Absenden prüfen und ändern zu können, genügt für «erfuellt».",
+      "fix_hint": "Vor dem Absenden eine Bestellübersicht mit Änderungsmöglichkeit anzeigen und dies im Bestellablauf beschreiben.",
+      "fehlt_ohne_beleg": "unklar",
+      "stichwoerter": [
+        "korrig",
+        "überprüf",
+        "eingabe",
+        "übersicht",
+        "ändern",
+        "fehler",
+        "correct",
+        "modifi"
+      ]
+    },
+    {
+      "id": "bestellbestaetigung",
+      "area": "E-Commerce-Pflichten",
+      "title": "Unverzügliche elektronische Bestellbestätigung",
+      "kind": "muss",
+      "weight": 2,
+      "legal_refs": [
+        "UWG Art. 3 Abs. 1 lit. s"
+      ],
+      "pages": [
+        "agb",
+        "versand",
+        "checkout"
+      ],
+      "question": "Sagt der Shop zu, die Bestellung unverzüglich auf elektronischem Weg (z.B. per E-Mail) zu bestätigen? Wird nichts dazu erwähnt, ist der Status «unklar», denn die Bestätigung kann trotzdem verschickt werden. Eine automatische Eingangs- oder Bestellbestätigung per E-Mail genügt für «erfuellt».",
+      "fix_hint": "Automatische Bestellbestätigung per E-Mail einrichten und in AGB/Bestellablauf erwähnen.",
+      "fehlt_ohne_beleg": "unklar",
+      "stichwoerter": [
+        "bestätig",
+        "bestaetig",
+        "e-mail",
+        "eingang",
+        "confirm"
+      ]
+    },
+    {
+      "id": "preise_chf",
+      "area": "Preise",
+      "title": "Tatsächlich zu bezahlender Preis in CHF",
+      "kind": "muss",
+      "weight": 3,
+      "legal_refs": [
+        "PBV Art. 3 Abs. 1",
+        "PBV Art. 14 Abs. 1"
+      ],
+      "pages": [
+        "produkt",
+        "startseite"
+      ],
+      "question": "Wird bei den angebotenen Waren der tatsächlich zu bezahlende Preis in Schweizer Franken angegeben, und ist klar, auf welche Ware und Verkaufseinheit er sich bezieht? Preise nur in EUR oder «Preis auf Anfrage» bei Standardware sind problematisch.",
+      "fix_hint": "Alle Preise in CHF als Endpreis anzeigen und die Verkaufseinheit (Stück, Packung, Menge) nennen.",
+      "fehlt_ohne_beleg": "unklar"
+    },
+    {
+      "id": "preise_zuschlaege",
+      "area": "Preise",
+      "title": "Abgaben und Zuschläge im Preis inbegriffen",
+      "kind": "muss",
+      "weight": 2,
+      "legal_refs": [
+        "PBV Art. 4 Abs. 1"
+      ],
+      "pages": [
+        "produkt",
+        "versand",
+        "agb",
+        "footer"
+      ],
+      "question": "Sind überwälzte öffentliche Abgaben (z.B. MWST, vorgezogene Recyclinggebühr) und nicht frei wählbare Zuschläge (Bearbeitungs-, Servicegebühren) im angezeigten Preis inbegriffen? Versandkosten dürfen separat angegeben werden, müssen aber transparent sein. Achte auf «zzgl. MWST» oder versteckte Gebühren. «fehlt» nur, wenn du eine Stelle wie «zzgl. MWST», «exkl. MWST» oder eine zusätzliche Pflichtgebühr zitieren kannst; fehlt nur der Zusatz «inkl. MWST», ist das kein Mangel. Werden gar keine Preise angezeigt: «nicht_anwendbar».",
+      "fix_hint": "Preise inkl. MWST und Pflichtgebühren anzeigen («inkl. MWST»), Versandkosten auf einer eigenen Seite klar ausweisen.",
+      "fehlt_ohne_beleg": "unklar",
+      "stichwoerter": [
+        "mwst",
+        "mehrwertsteuer",
+        "steuer",
+        "gebühr",
+        "zuschlag",
+        "versandkosten",
+        "porto",
+        "inkl",
+        "zzgl",
+        "exkl",
+        "tva",
+        "iva"
+      ]
+    },
+    {
+      "id": "streichpreise",
+      "area": "Preise",
+      "title": "Streich- und Vergleichspreise korrekt",
+      "kind": "muss",
+      "weight": 2,
+      "legal_refs": [
+        "PBV Art. 16",
+        "PBV Art. 17 Abs. 1",
+        "UWG Art. 3 Abs. 1 lit. b"
+      ],
+      "pages": [
+        "produkt",
+        "startseite",
+        "footer"
+      ],
+      "question": "Werden Streichpreise, «statt»-Preise, Rabatte in Prozent oder Vergleichspreise verwendet? Falls ja: Gibt es Hinweise, dass sie irreführend sind (z.B. Dauer-Rabatt, unklarer Vergleichspreis, «bis zu -70%» ohne Bezug)? Falls keine solchen Angaben vorkommen, ist der Status «nicht_anwendbar». Zwei Preise direkt hintereinander (z.B. «CHF 119.00 CHF 99.00»), «Sale» oder «-30 %» sind Streichpreise bzw. Rabatte.",
+      "fix_hint": "Vergleichspreise nur verwenden, wenn die Ware vorher tatsächlich zu diesem Preis angeboten wurde (Selbstvergleich), und die Art des Vergleichs angeben.",
+      "fehlt_ohne_beleg": "nicht_anwendbar",
+      "ausloeser": "(?:chf|fr\\.)\\s?(\\d[\\d'’.,]*\\d)\\s*(?:chf|fr\\.)\\s?(?!\\1(?!\\d))\\d|\\bstatt\\s+(?:chf|fr\\.)?\\s?\\d|normalpreis|vergleichspreis|streichpreis|\\buvp\\b|-\\s?\\d{1,2}\\s?%|\\d{1,2}\\s?%\\s?(?:rabatt|reduziert|günstiger|off|sparen)|sale bis|bis zu -?\\s?\\d{1,2}\\s?%"
+    },
+    {
+      "id": "datenschutz_grundinfo",
+      "area": "Datenschutz",
+      "title": "Datenschutzerklärung mit Mindestangaben",
+      "kind": "muss",
+      "weight": 3,
+      "legal_refs": [
+        "DSG Art. 19 Abs. 1",
+        "DSG Art. 19 Abs. 2"
+      ],
+      "pages": [
+        "datenschutz"
+      ],
+      "question": "Gibt es eine Datenschutzerklärung, und nennt sie mindestens: die Identität und Kontaktdaten des Verantwortlichen, den Bearbeitungszweck und gegebenenfalls die Empfänger bzw. Kategorien von Empfängern (z.B. Zahlungsanbieter, Versanddienstleister, Shop-Plattform, Analyse-Tools)?",
+      "fix_hint": "Datenschutzerklärung nach DSG mit Verantwortlichem, Zwecken und Empfängerkategorien erstellen und im Footer verlinken.",
+      "stichwoerter": [
+        "verantwortlich",
+        "zweck",
+        "empfänger",
+        "kategorien",
+        "kontakt",
+        "responsable",
+        "finalité",
+        "destinataire",
+        "responsabile",
+        "finalità",
+        "destinatari",
+        "controller",
+        "purpose",
+        "recipient"
+      ]
+    },
+    {
+      "id": "datenschutz_ausland",
+      "area": "Datenschutz",
+      "title": "Bekanntgabe ins Ausland offengelegt",
+      "kind": "muss",
+      "weight": 2,
+      "legal_refs": [
+        "DSG Art. 19 Abs. 4",
+        "DSG Art. 16"
+      ],
+      "pages": [
+        "datenschutz",
+        "agb"
+      ],
+      "question": "Werden Personendaten ins Ausland bekanntgegeben (sehr wahrscheinlich bei Shopify, Google Analytics, Meta Pixel, Mailchimp, Stripe usw.)? Falls ja: Nennt die Datenschutzerklärung die Staaten und die Garantien (z.B. Angemessenheitsentscheid, Standardvertragsklauseln) oder eine Ausnahme? Gibt es keine Datenschutzerklärung, aber Hinweise auf ausländische Dienste (z.B. Shopify, PayPal), ist der Status «fehlt». «erfuellt» nur, wenn konkrete Staaten oder Regionen genannt sind (z.B. USA, EU/EWR). Eine allgemeine Formel wie «nur in Länder mit angemessenem Datenschutz» ohne Staaten oder Staaten ohne Garantien: «teilweise».",
+      "fix_hint": "In der Datenschutzerklärung die Empfängerstaaten (z.B. USA, EU) und die Garantien (z.B. Swiss-U.S. Data Privacy Framework, Standardvertragsklauseln) aufführen.",
+      "stichwoerter": [
+        "ausland",
+        "drittland",
+        "drittstaat",
+        "usa",
+        "vereinigte staaten",
+        "standardvertrag",
+        "angemessen",
+        "garantie",
+        "privacy framework",
+        "übermittl",
+        "bekanntgabe",
+        "étranger",
+        "estero",
+        "transfer",
+        "irland",
+        "kanada"
+      ]
+    },
+    {
+      "id": "tracking_transparenz",
+      "area": "Datenschutz",
+      "title": "Cookies und Tracking transparent erklärt",
+      "kind": "kann",
+      "weight": 1,
+      "legal_refs": [
+        "DSG Art. 6 Abs. 3",
+        "DSG Art. 19 Abs. 2"
+      ],
+      "pages": [
+        "datenschutz",
+        "footer",
+        "startseite",
+        "agb"
+      ],
+      "question": "Werden Cookies, Analyse- und Marketing-Tools (z.B. Google Analytics, Meta Pixel, TikTok Pixel) und ihr Zweck erklärt? Gibt es eine Möglichkeit, Tracking abzulehnen? (Ein Cookie-Banner ist in der Schweiz nicht generell Pflicht, aber Best Practice und bei EU-Kundschaft oft nötig.) Ein Link «Cookie-Einstellungen» oder ein Cookie-Banner mit Ablehnen-Knopf gilt als Möglichkeit, Tracking abzulehnen.",
+      "fix_hint": "Eingesetzte Tools mit Zweck auflisten und einen Cookie-Banner mit Ablehnungsoption einbauen, besonders bei Kundschaft aus der EU.",
+      "stichwoerter": [
+        "cookie",
+        "analytics",
+        "pixel",
+        "tracking",
+        "tag manager",
+        "facebook",
+        "meta",
+        "tiktok",
+        "hotjar",
+        "clarity",
+        "widerspruch",
+        "opt-out",
+        "deaktivier",
+        "ablehn",
+        "einwilligung"
+      ]
+    },
+    {
+      "id": "newsletter_einwilligung",
+      "area": "Marketing",
+      "title": "Newsletter nur mit Einwilligung und Abmeldemöglichkeit",
+      "kind": "muss",
+      "weight": 2,
+      "legal_refs": [
+        "UWG Art. 3 Abs. 1 lit. o"
+      ],
+      "pages": [
+        "newsletter",
+        "footer",
+        "startseite",
+        "datenschutz",
+        "versand",
+        "agb",
+        "checkout"
+      ],
+      "question": "Bietet der Shop einen Newsletter oder E-Mail-Marketing an (achte auch auf Anmeldefelder im Footer)? Falls ja: Wird die Einwilligung eingeholt (kein vorangekreuztes Häkchen, keine automatische Anmeldung beim Kauf ohne Hinweis) und ist eine einfache Abmeldung erwähnt? Falls kein Newsletter erkennbar ist: «nicht_anwendbar». Ein Anmeldefeld für E-Mails (z.B. «Newsletter», «Abonnieren», «Subscribe», «Melde dich an für News») zählt als Newsletter. Beschreibt die Datenschutzerklärung die Einwilligung (z.B. Double-Opt-in) und einen Abmeldelink, ist das «erfuellt»; das Eintragen der E-Mail-Adresse in ein Anmeldefeld ist eine aktive Einwilligung.",
+      "fix_hint": "Newsletter nur mit aktiver Einwilligung (Opt-in) versenden, Absender korrekt angeben und in jeder E-Mail einen Abmeldelink einfügen.",
+      "fehlt_ohne_beleg": "unklar",
+      "ausloeser": "newsletter|abonnier|subscribe|iscriviti|abbonati|s'abonner|inscrivez|melde dich an|anmelden für|e-mail-liste|beitreten|melden sie sich an|join the|sign up",
+      "stichwoerter": [
+        "newsletter",
+        "e-mail-marketing",
+        "werbung",
+        "marketing",
+        "abmeld",
+        "abbestell",
+        "opt-in",
+        "double",
+        "einwilligung",
+        "klaviyo",
+        "mailchimp",
+        "brevo"
+      ]
+    },
+    {
+      "id": "irrefuehrende_angaben",
+      "area": "Werbeaussagen",
+      "title": "Keine unrichtigen oder irreführenden Angaben",
+      "kind": "muss",
+      "weight": 3,
+      "legal_refs": [
+        "UWG Art. 3 Abs. 1 lit. b",
+        "UWG Art. 3 Abs. 1 lit. i"
+      ],
+      "pages": [
+        "startseite",
+        "produkt"
+      ],
+      "question": "Enthalten Startseite oder Produkttexte Aussagen, die unrichtig oder irreführend sein könnten: unbelegte Superlative («bester», «Nr. 1»), «gratis» mit versteckten Bedingungen, künstliche Verknappung («nur noch heute», «nur noch 2 Stück» als Dauerbanner), unbelegte Wirkungs- oder Gesundheitsversprechen, gefälschte Bewertungen oder Testsiegel?",
+      "fix_hint": "Superlative und Wirkungsversprechen belegen oder entfernen, Verknappungs-Hinweise nur bei echter Knappheit einsetzen.",
+      "fehlt_ohne_beleg": "unklar"
+    },
+    {
+      "id": "klima_claims",
+      "area": "Werbeaussagen",
+      "title": "Klima-Aussagen belegt",
+      "kind": "muss",
+      "weight": 2,
+      "legal_refs": [
+        "UWG Art. 3 Abs. 1 lit. x"
+      ],
+      "pages": [
+        "startseite",
+        "produkt",
+        "footer"
+      ],
+      "question": "Macht der Shop Aussagen zur Klimabelastung (z.B. «klimaneutral», «CO2-kompensiert», «klimapositiv», «netto null»)? Falls ja: Werden objektive und überprüfbare Grundlagen genannt oder verlinkt (Berechnung, Zertifikat, Projekt, Umfang)? Falls keine solchen Aussagen vorkommen: «nicht_anwendbar».",
+      "fix_hint": "Klima-Aussagen nur mit nachvollziehbarer Grundlage machen (Berechnungsmethode, Zertifikat, Umfang der Kompensation) und diese verlinken – sonst entfernen.",
+      "fehlt_ohne_beleg": "nicht_anwendbar",
+      "ausloeser": "klimaneutral|klimapositiv|klimafreundlich|co2|co₂|netto.?null|net.?zero|carbon.?neutral|neutre en carbone"
+    },
+    {
+      "id": "swissness",
+      "area": "Werbeaussagen",
+      "title": "Herkunftsangaben («Swiss Made», Schweizerkreuz) zutreffend",
+      "kind": "muss",
+      "weight": 2,
+      "legal_refs": [
+        "MSchG Art. 47 Abs. 3",
+        "MSchG Art. 48 Abs. 1",
+        "MSchG Art. 48c Abs. 1"
+      ],
+      "pages": [
+        "startseite",
+        "produkt"
+      ],
+      "question": "Werden Schweizer Herkunftsangaben verwendet («Swiss Made», «Schweizer Qualität», «aus der Schweiz», Schweizerkreuz)? Falls ja: Gibt es Widersprüche (z.B. Herstellung im Ausland, «designed in Switzerland» als Herkunft dargestellt) oder fehlen Angaben, die die Herkunft plausibel machen? Hinweis: Für industrielle Produkte müssen mindestens 60 % der Herstellungskosten in der Schweiz anfallen; für Lebensmittel gelten eigene Regeln. Falls keine Herkunftsangaben vorkommen: «nicht_anwendbar». Herkunftsangaben anderer Länder (z.B. «Made in Europe», «hergestellt in Portugal») sind keine Schweizer Herkunftsangabe. «Entworfen in der Schweiz» zusammen mit dem tatsächlichen Herstellungsort (auch «hergestellt in Europa») ist korrekt und «erfuellt».",
+      "fix_hint": "«Swiss Made» und Schweizerkreuz nur verwenden, wenn die Swissness-Kriterien erfüllt und dokumentiert sind; sonst präzise formulieren (z.B. «entworfen in Zürich, hergestellt in Portugal»).",
+      "fehlt_ohne_beleg": "nicht_anwendbar",
+      "ausloeser": "swiss made|swissmade|swiss quality|made in switzerland|schweizer (?:qualität|produkt|herstellung|handwerk|hersteller)|hergestellt in der schweiz|in der schweiz (?:hergestellt|produziert|gefertigt|entwickelt)|aus der schweiz|fabriqué en suisse|fatto in svizzera|🇨🇭|swiss design|designed in switzerland|entworfen in der schweiz|swiss brand|schweizer marke|schweizer design|schweizer technologie"
+    },
+    {
+      "id": "agb_fairness",
+      "area": "AGB",
+      "title": "Keine offensichtlich missbräuchlichen AGB-Klauseln",
+      "kind": "muss",
+      "weight": 1,
+      "legal_refs": [
+        "UWG Art. 8",
+        "OR Art. 199"
+      ],
+      "pages": [
+        "agb"
+      ],
+      "question": "Enthalten die AGB Klauseln, die Konsumentinnen erheblich und ungerechtfertigt benachteiligen könnten, z.B. vollständiger Ausschluss jeder Gewährleistung und Haftung, einseitige Preisänderungen nach Vertragsschluss, unverhältnismässige Gebühren, Verfall von Guthaben ohne Frist? Nur deutliche Fälle als «fehlt» werten, unsichere als «teilweise». Gibt es keine AGB, ist der Status «nicht_anwendbar».",
+      "fix_hint": "Kritische Klauseln (Gewährleistungsausschluss, einseitige Änderungen) juristisch prüfen lassen und ausgewogen formulieren.",
+      "fehlt_ohne_beleg": "unklar",
+      "stichwoerter": [
+        "haftung",
+        "gewährleistung",
+        "garantie",
+        "mängel",
+        "rücktritt",
+        "änderung",
+        "ausschluss",
+        "responsabilité",
+        "garanzia",
+        "liability",
+        "warranty"
+      ]
+    },
+    {
+      "id": "agb_verfuegbar",
+      "area": "AGB",
+      "title": "AGB vorhanden, auffindbar und Schweizer Recht",
+      "kind": "kann",
+      "weight": 1,
+      "legal_refs": [
+        "OR Art. 1 Abs. 1"
+      ],
+      "pages": [
+        "agb",
+        "footer",
+        "startseite",
+        "checkout"
+      ],
+      "question": "Gibt es AGB, sind sie leicht auffindbar (z.B. als Link im Footer) und beziehen sie sich auf Schweizer Recht und einen Gerichtsstand in der Schweiz? Ob im Checkout vor der Bestellung auf die AGB hingewiesen wird, lässt sich nur beurteilen, wenn eine Checkout-Seite vorliegt; sonst beurteile nur Auffindbarkeit und Rechtswahl. Ein Link «AGB» im Footer gilt als leicht auffindbar. Rechtswahl und Gerichtsstand nur als vorhanden werten, wenn du die Stelle zitieren kannst. Fehlt nur der Gerichtsstand, ist das kein Mangel: Für Konsumentinnen gilt ohnehin ihr Wohnsitz (ZPO Art. 32).",
+      "fix_hint": "AGB im Footer verlinken, im Checkout vor dem Absenden darauf hinweisen und Schweizer Recht/Gerichtsstand festlegen.",
+      "stichwoerter": [
+        "gerichtsstand",
+        "anwendbar",
+        "schweizer",
+        "schweizerisch",
+        "recht",
+        "for juridique",
+        "droit",
+        "diritto",
+        "foro",
+        "governing",
+        "jurisdiction"
+      ]
+    },
+    {
+      "id": "eu_vorlagen",
+      "area": "AGB",
+      "title": "Keine unpassenden EU-Vorlagen (DSGVO/BGB) statt Schweizer Recht",
+      "kind": "kann",
+      "weight": 1,
+      "legal_refs": [
+        "OR Art. 40a Abs. 1",
+        "DSG Art. 19 Abs. 1"
+      ],
+      "pages": [
+        "agb",
+        "datenschutz",
+        "versand"
+      ],
+      "question": "Verweisen AGB, Datenschutzerklärung oder Rückgabeinfos ausschliesslich auf EU- oder deutsches Recht (DSGVO, BGB, «gesetzliches Widerrufsrecht von 14 Tagen») ohne Bezug zum Schweizer Recht (DSG, OR)? Hinweis: Das Schweizer Recht kennt kein allgemeines Widerrufsrecht für Online-Käufe; ein freiwilliges Rückgaberecht ist erlaubt, muss dann aber eingehalten werden. Gibt es weder AGB noch Datenschutzerklärung, ist der Status «nicht_anwendbar». Ein Verweis auf die DSGVO zusätzlich zum DSG (z.B. «soweit anwendbar») ist in Ordnung und kein Mangel. Regeln, die ausdrücklich nur für Kundinnen in Deutschland oder der EU gelten, sind kein Mangel. Enthalten die Texte neben Schweizer Recht eine deutsche Vorlage, z.B. eine Widerrufsbelehrung nach BGB, die nicht als freiwillig bezeichnet ist: «teilweise». Typische Zeichen einer deutschen Vorlage: ein «Muster-Widerrufsformular» oder «Rechte gemäss DSGVO» ohne jeden Bezug zum DSG.",
+      "fix_hint": "Rechtstexte auf Schweizer Recht anpassen (DSG statt nur DSGVO); ein Rückgaberecht als freiwillige Leistung klar so bezeichnen.",
+      "stichwoerter": [
+        "widerruf",
+        "bgb",
+        "dsgvo",
+        "gdpr",
+        "rgpd",
+        "14 tage",
+        "vierzehn",
+        "streitschlichtung",
+        "vsbg",
+        "rückgabe",
+        "dsg",
+        "eu-",
+        "europäische union",
+        "union européenne"
+      ]
+    }
+  ]
+}

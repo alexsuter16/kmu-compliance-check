@@ -1,0 +1,33 @@
+{
+  "name": "Bergkamm Outdoor GmbH",
+  "branche": "Outdoor-Bekleidung",
+  "sprache": "de",
+  "rolle": "Subtile Fälle: «bis zu −70 %», vage CO2-Aussage, korrekte «Swiss Design»-Angabe",
+  "eingebaute_maengel": [
+    "«SALE bis zu −70 %» ohne nachvollziehbare Vergleichspreise",
+    "«CO2-neutral» ohne Berechnung oder Projekt",
+    "Automatische Newsletter-Anmeldung bei jeder Bestellung",
+    "Übermittlung ins Ausland erwähnt, aber ohne Staaten und Garantien",
+    "Unbelegter Superlativ «die wärmste Jacke der Welt»"
+  ],
+  "erwartet": {
+    "impressum_identitaet": "erfuellt",
+    "firma_handelsregister": "erfuellt",
+    "bestellschritte": "erfuellt",
+    "eingabefehler": "erfuellt",
+    "bestellbestaetigung": "erfuellt",
+    "preise_chf": "erfuellt",
+    "preise_zuschlaege": "erfuellt",
+    "streichpreise": "teilweise",
+    "datenschutz_grundinfo": "erfuellt",
+    "datenschutz_ausland": "teilweise",
+    "tracking_transparenz": "erfuellt",
+    "newsletter_einwilligung": "fehlt",
+    "irrefuehrende_angaben": "teilweise",
+    "klima_claims": "fehlt",
+    "swissness": "erfuellt",
+    "agb_fairness": "erfuellt",
+    "agb_verfuegbar": "erfuellt",
+    "eu_vorlagen": "erfuellt"
+  }
+}

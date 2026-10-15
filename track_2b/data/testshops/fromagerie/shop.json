@@ -1,0 +1,33 @@
+{
+  "name": "Fromagerie du Jorat Sàrl",
+  "branche": "Käse (Lebensmittel)",
+  "sprache": "fr",
+  "rolle": "Französischsprachiger Shop: testet Mehrsprachigkeit und korrekte Swissness bei Lebensmitteln",
+  "eingebaute_maengel": [
+    "Produktpreise nur in Euro",
+    "Datenschutzerklärung stützt sich nur auf die DSGVO (RGPD), ohne Empfänger",
+    "Google Analytics ohne Angaben zur Übermittlung in die USA",
+    "Cookies erwähnt, keine Ablehnungsmöglichkeit",
+    "Newsletter-Häkchen vorausgewählt, keine Abmeldung erwähnt"
+  ],
+  "erwartet": {
+    "impressum_identitaet": "erfuellt",
+    "firma_handelsregister": "erfuellt",
+    "bestellschritte": "erfuellt",
+    "eingabefehler": "erfuellt",
+    "bestellbestaetigung": "erfuellt",
+    "preise_chf": "fehlt",
+    "preise_zuschlaege": "erfuellt",
+    "streichpreise": "nicht_anwendbar",
+    "datenschutz_grundinfo": "teilweise",
+    "datenschutz_ausland": "fehlt",
+    "tracking_transparenz": "teilweise",
+    "newsletter_einwilligung": "fehlt",
+    "irrefuehrende_angaben": "erfuellt",
+    "klima_claims": "nicht_anwendbar",
+    "swissness": "erfuellt",
+    "agb_fairness": "erfuellt",
+    "agb_verfuegbar": "erfuellt",
+    "eu_vorlagen": "fehlt"
+  }
+}

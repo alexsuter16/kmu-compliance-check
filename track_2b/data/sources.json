@@ -1,0 +1,198 @@
+{
+  "laws": {
+    "description": "Konsolidierte Bundeserlasse (Akoma Ntoso XML) von fedlex, Stand der aufgeführten Version",
+    "source": "https://www.fedlex.admin.ch",
+    "license_note": "Gesetze und Verordnungen sind nach Art. 5 Abs. 1 lit. a URG urheberrechtlich nicht geschützt.",
+    "files": [
+      {
+        "law": "DSG",
+        "sr": "235.1",
+        "title": "Bundesgesetz über den Datenschutz",
+        "lang": "de",
+        "version": "20250707",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/2022/491/20250707",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2022/491/20250707/de/xml/fedlex-data-admin-ch-eli-cc-2022-491-20250707-de-xml-1.xml"
+      },
+      {
+        "law": "DSG",
+        "sr": "235.1",
+        "title": "Bundesgesetz über den Datenschutz",
+        "lang": "fr",
+        "version": "20250707",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/2022/491/20250707",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2022/491/20250707/fr/xml/fedlex-data-admin-ch-eli-cc-2022-491-20250707-fr-xml-1.xml"
+      },
+      {
+        "law": "DSG",
+        "sr": "235.1",
+        "title": "Bundesgesetz über den Datenschutz",
+        "lang": "it",
+        "version": "20250707",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/2022/491/20250707",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2022/491/20250707/it/xml/fedlex-data-admin-ch-eli-cc-2022-491-20250707-it-xml-1.xml"
+      },
+      {
+        "law": "DSV",
+        "sr": "235.11",
+        "title": "Verordnung über den Datenschutz",
+        "lang": "de",
+        "version": "20251201",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/2022/568/20251201",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2022/568/20251201/de/xml/fedlex-data-admin-ch-eli-cc-2022-568-20251201-de-xml-2.xml"
+      },
+      {
+        "law": "DSV",
+        "sr": "235.11",
+        "title": "Verordnung über den Datenschutz",
+        "lang": "fr",
+        "version": "20251201",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/2022/568/20251201",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2022/568/20251201/fr/xml/fedlex-data-admin-ch-eli-cc-2022-568-20251201-fr-xml-2.xml"
+      },
+      {
+        "law": "DSV",
+        "sr": "235.11",
+        "title": "Verordnung über den Datenschutz",
+        "lang": "it",
+        "version": "20251201",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/2022/568/20251201",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2022/568/20251201/it/xml/fedlex-data-admin-ch-eli-cc-2022-568-20251201-it-xml-2.xml"
+      },
+      {
+        "law": "HasLV",
+        "sr": "232.112.1",
+        "title": "Verordnung über die Verwendung von schweizerischen Herkunftsangaben für Lebensmittel",
+        "lang": "de",
+        "version": "20260101",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/2015/611/20260101",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2015/611/20260101/de/xml/fedlex-data-admin-ch-eli-cc-2015-611-20260101-de-xml-1.xml"
+      },
+      {
+        "law": "HasLV",
+        "sr": "232.112.1",
+        "title": "Verordnung über die Verwendung von schweizerischen Herkunftsangaben für Lebensmittel",
+        "lang": "fr",
+        "version": "20260101",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/2015/611/20260101",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2015/611/20260101/fr/xml/fedlex-data-admin-ch-eli-cc-2015-611-20260101-fr-xml-1.xml"
+      },
+      {
+        "law": "HasLV",
+        "sr": "232.112.1",
+        "title": "Verordnung über die Verwendung von schweizerischen Herkunftsangaben für Lebensmittel",
+        "lang": "it",
+        "version": "20260101",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/2015/611/20260101",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/2015/611/20260101/it/xml/fedlex-data-admin-ch-eli-cc-2015-611-20260101-it-xml-1.xml"
+      },
+      {
+        "law": "MSchG",
+        "sr": "232.11",
+        "title": "Markenschutzgesetz (inkl. Herkunftsangaben/Swissness)",
+        "lang": "de",
+        "version": "20250701",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/1993/274_274_274/20250701",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1993/274_274_274/20250701/de/xml/fedlex-data-admin-ch-eli-cc-1993-274_274_274-20250701-de-xml-3.xml"
+      },
+      {
+        "law": "MSchG",
+        "sr": "232.11",
+        "title": "Markenschutzgesetz (inkl. Herkunftsangaben/Swissness)",
+        "lang": "fr",
+        "version": "20250701",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/1993/274_274_274/20250701",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1993/274_274_274/20250701/fr/xml/fedlex-data-admin-ch-eli-cc-1993-274_274_274-20250701-fr-xml-3.xml"
+      },
+      {
+        "law": "MSchG",
+        "sr": "232.11",
+        "title": "Markenschutzgesetz (inkl. Herkunftsangaben/Swissness)",
+        "lang": "it",
+        "version": "20250701",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/1993/274_274_274/20250701",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1993/274_274_274/20250701/it/xml/fedlex-data-admin-ch-eli-cc-1993-274_274_274-20250701-it-xml-3.xml"
+      },
+      {
+        "law": "OR",
+        "sr": "220",
+        "title": "Obligationenrecht",
+        "lang": "de",
+        "version": "20261001",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/27/317_321_377/20261001",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/27/317_321_377/20261001/de/xml/fedlex-data-admin-ch-eli-cc-27-317_321_377-20261001-de-xml-3.xml"
+      },
+      {
+        "law": "OR",
+        "sr": "220",
+        "title": "Obligationenrecht",
+        "lang": "fr",
+        "version": "20261001",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/27/317_321_377/20261001",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/27/317_321_377/20261001/fr/xml/fedlex-data-admin-ch-eli-cc-27-317_321_377-20261001-fr-xml-3.xml"
+      },
+      {
+        "law": "OR",
+        "sr": "220",
+        "title": "Obligationenrecht",
+        "lang": "it",
+        "version": "20261001",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/27/317_321_377/20261001",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/27/317_321_377/20261001/it/xml/fedlex-data-admin-ch-eli-cc-27-317_321_377-20261001-it-xml-3.xml"
+      },
+      {
+        "law": "PBV",
+        "sr": "942.211",
+        "title": "Verordnung über die Bekanntgabe von Preisen",
+        "lang": "de",
+        "version": "20250101",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/1978/2081_2081_2081/20250101",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1978/2081_2081_2081/20250101/de/xml/fedlex-data-admin-ch-eli-cc-1978-2081_2081_2081-20250101-de-xml-3.xml"
+      },
+      {
+        "law": "PBV",
+        "sr": "942.211",
+        "title": "Verordnung über die Bekanntgabe von Preisen",
+        "lang": "fr",
+        "version": "20250101",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/1978/2081_2081_2081/20250101",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1978/2081_2081_2081/20250101/fr/xml/fedlex-data-admin-ch-eli-cc-1978-2081_2081_2081-20250101-fr-xml-3.xml"
+      },
+      {
+        "law": "PBV",
+        "sr": "942.211",
+        "title": "Verordnung über die Bekanntgabe von Preisen",
+        "lang": "it",
+        "version": "20250101",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/1978/2081_2081_2081/20250101",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1978/2081_2081_2081/20250101/it/xml/fedlex-data-admin-ch-eli-cc-1978-2081_2081_2081-20250101-it-xml-3.xml"
+      },
+      {
+        "law": "UWG",
+        "sr": "241",
+        "title": "Bundesgesetz gegen den unlauteren Wettbewerb",
+        "lang": "de",
+        "version": "20250101",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/1988/223_223_223/20250101",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1988/223_223_223/20250101/de/xml/fedlex-data-admin-ch-eli-cc-1988-223_223_223-20250101-de-xml-5.xml"
+      },
+      {
+        "law": "UWG",
+        "sr": "241",
+        "title": "Bundesgesetz gegen den unlauteren Wettbewerb",
+        "lang": "fr",
+        "version": "20250101",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/1988/223_223_223/20250101",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1988/223_223_223/20250101/fr/xml/fedlex-data-admin-ch-eli-cc-1988-223_223_223-20250101-fr-xml-5.xml"
+      },
+      {
+        "law": "UWG",
+        "sr": "241",
+        "title": "Bundesgesetz gegen den unlauteren Wettbewerb",
+        "lang": "it",
+        "version": "20250101",
+        "eli": "https://fedlex.data.admin.ch/eli/cc/1988/223_223_223/20250101",
+        "url": "https://fedlex.data.admin.ch/filestore/fedlex.data.admin.ch/eli/cc/1988/223_223_223/20250101/it/xml/fedlex-data-admin-ch-eli-cc-1988-223_223_223-20250101-it-xml-5.xml"
+      }
+    ]
+  }
+}

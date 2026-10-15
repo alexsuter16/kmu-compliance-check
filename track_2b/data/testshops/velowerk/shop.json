@@ -1,0 +1,27 @@
+{
+  "name": "Velowerk Zürich AG",
+  "branche": "Velo-Ersatzteile",
+  "sprache": "de",
+  "rolle": "Kontrollgruppe: vorbildlicher Shop, sollte fast 100 Punkte erreichen",
+  "eingebaute_maengel": [],
+  "erwartet": {
+    "impressum_identitaet": "erfuellt",
+    "firma_handelsregister": "erfuellt",
+    "bestellschritte": "erfuellt",
+    "eingabefehler": "erfuellt",
+    "bestellbestaetigung": "erfuellt",
+    "preise_chf": "erfuellt",
+    "preise_zuschlaege": "erfuellt",
+    "streichpreise": "nicht_anwendbar",
+    "datenschutz_grundinfo": "erfuellt",
+    "datenschutz_ausland": "erfuellt",
+    "tracking_transparenz": "erfuellt",
+    "newsletter_einwilligung": "erfuellt",
+    "irrefuehrende_angaben": "erfuellt",
+    "klima_claims": "nicht_anwendbar",
+    "swissness": "nicht_anwendbar",
+    "agb_fairness": "erfuellt",
+    "agb_verfuegbar": "erfuellt",
+    "eu_vorlagen": "erfuellt"
+  }
+}

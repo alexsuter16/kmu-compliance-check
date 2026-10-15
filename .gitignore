@@ -25,3 +25,6 @@ build/
 .DS_Store
 .idea/
 .vscode/
+
+# Lokales Apertus-Modell (siehe README), nie ins Repository
+apertus-lokal/

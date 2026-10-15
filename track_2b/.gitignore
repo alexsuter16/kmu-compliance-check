@@ -1,27 +1,28 @@
-# Secrets and local config
+# Schlüssel
 .env
 .env.*
 !.env.example
 
-# Model weights and checkpoints — do not commit these
-*.bin
-*.safetensors
-*.gguf
-*.ckpt
-*.pt
-
-# Python
+# Lokale Umgebung und Caches
+.venv/
 __pycache__/
 *.py[cod]
-.venv/
-venv/
-
-# Node
-node_modules/
-dist/
-build/
-
-# OS and editor
 .DS_Store
 .idea/
 .vscode/
+
+# Modellgewichte
+*.bin
+*.safetensors
+*.gguf
+
+# Daten, die sich jederzeit neu erzeugen lassen (make index).
+# Die Gesetzestexte in data/laws/ werden bewusst mitgeliefert: So baut das Image ohne Internet.
+data/processed/
+*.part
+
+# Berichte und Messungen (enthalten Inhalte echter Shops, nicht veröffentlichen)
+output/
+
+# Lokale Werkzeug-Einstellungen
+.claude/

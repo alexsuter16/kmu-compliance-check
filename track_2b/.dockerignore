@@ -1,0 +1,13 @@
+# Nie ins Image: Schlüssel, lokale Umgebung, Ergebnisse mit Inhalten echter Shops
+.env
+.env.*
+.venv/
+output/
+# Wird beim Bauen neu erzeugt
+data/processed/
+# Für den Betrieb nicht nötig
+docs/
+*.pdf
+**/__pycache__/
+*.py[cod]
+.DS_Store

@@ -1,103 +1,131 @@
-# Track 2 B: Own Project
+# KMU-Compliance-Check · Track 2B
 
-Bring your own idea and build a working Apertus prototype that tackles a problem you care about — any domain, any use case. The project must be new, started within the hackathon period.
+A compliance pre-check for small Swiss online shops (SMEs, in German «KMU»), built with
+**Apertus 1.5**. It loads up to 10 public pages of a shop, checks 18 points of Swiss law
+(UWG, PBV, DSG, OR, MSchG) and returns a score with a traffic light. Every finding names the
+legal basis, quotes the shop's page as evidence (verified in code) and suggests a fix. On request,
+Apertus drafts the missing text, e.g. the paragraph on data transfers abroad.
 
-Submissions must use the Apertus model family.
-For Track 2 this means that submitted solutions must be built with Apertus. Other open-weights models can be used to support development, e.g. as automatic judges during evaluation. Their role must be clearly described in the submission report.
+> Pre-check, not legal advice. Every report says so.
 
-💬 In case you have questions, join the conversation on [Discord](https://discord.gg/hack-apertus) or send an email to “hello@hackapertus.ch”
+## Run it
 
----
+```bash
+export LLM_NAME=swiss-ai/apertus-v1.5-8b LLM_BASE_URL=<endpoint> LLM_API_KEY=<key>
+make run                                # builds the Docker image, web UI on http://localhost:7860
+make demo SHOP=testshop:velowerk        # same image, one check, report in the terminal
+```
 
-## 🔧 Resources & Tools
+- Instead of `export`, the three values can go into `.env` (template: [`.env.example`](.env.example)).
+- No GPU needed: the model runs at the endpoint. The image contains the statutes and builds offline.
+- Try `testshop:bergwiese` (many defects), `testshop:velowerk` (model shop) or any public shop URL.
 
-Check our resources & tools page for detailed information:
-https://hackapertus.notion.site/resources-tools
+## How it works
 
-| Models           | URL                                      |
-|------------------|------------------------------------------|
-| Apertus v1.5 8B  | [huggingface.co/swiss-ai/Apertus-v1.5-8B](https://huggingface.co/swiss-ai/Apertus-v1.5-8B)  |
-| Apertus v1.5 70B | [huggingface.co/swiss-ai/Apertus-v1.5-70B](https://huggingface.co/swiss-ai/Apertus-v1.5-70B) |
+```
+shop URL ─▶ seiten_laden ─▶ seiten_zuordnen ─▶ pruefen × 18 (parallel, Apertus) ─▶ score_berechnen ─▶ bericht
+             ≤ 10 pages       page types          + exact statute text from fedlex     in code, no LLM      quotes, laws, fixes
+                                                  + rules in code that verify
+```
 
+Four ideas carry the design:
 
-## Target architecture (mandatory)
+1. **Apertus judges, code verifies.** Only `pruefen` calls the model. Code checks every quote
+   against the page, decides whether a checkpoint applies at all, and computes the score.
+2. **Evidence, not claims.** A finding without a verifiable quote is not reported as a violation.
+3. **Honest when unsure.** Pages the tool cannot see (checkout, JavaScript-only pages) give «unclear», never «missing».
+4. **Sovereign.** One OpenAI-compatible endpoint is the only runtime dependency besides the shop itself.
 
-Whatever you build in Track 2B must be deployable in one of these three architectures:
+The illustrated explainer [`docs/bauplan.html`](docs/bauplan.html) (German, written like a Swiss
+statute) goes through every step with diagrams.
 
-- **a) On-premise** — on the organisation's own infrastructure, under its own administration.
-- **b) Air-gapped** — with no external network connection at runtime.
-- **c) Sovereign Swiss cloud** — on a cloud platform operated in Switzerland, under Swiss jurisdiction, with Swiss data residency.
+## Reading the code
 
----
+In the order the data flows. Every file starts with «Schritt N» and names its article in the explainer.
 
-## Data
+| Step | File | What it does |
+|---|---|---|
+| 1 | `src/download_data.py` | load the statutes from fedlex (already in `data/laws/`) |
+| 2 | `src/ingest.py` | split the statutes into citable passages (run at `docker build`) |
+| 3 | `src/retrieval.py` | optional free search over the statutes (experiment, not in the image) |
+| 4 | `src/crawler.py` | load a shop's pages, clean them, assign page types |
+| 5 | `src/pipeline.py` | the check as a LangGraph graph, including the rules that verify the model |
+| 5 | `src/prompts.py` | the prompt of one check; long pages are reduced to the relevant sections |
+| 6 | `src/scoring.py` | score and traffic light, without a model |
+| 7 | `src/report.py` | the report in Markdown |
+| 8 | `src/evaluate.py` · `evaluate_audit.py` · `evaluate_crawler.py` | measurements: test shops, real-shop audit, page discovery |
+| 9 | `src/app.py` · `src/ui_parts.py` | the web UI (Gradio) and its look |
 
-The `data/` directory must not exceed 100 MB.
+Helpers: `config.py` (paths), `catalog.py` (checklist), `laws.py` (statute lookup), `evidence.py`
+(quote verification), `llm.py` (access to Apertus), `drafts.py` (text drafts), `protocol.py` (audit trail).
 
----
+Conventions:
 
-## 📦 Submission Requirements & Deliverables
+- **Business rules are data**, not code: checkpoints, legal references, weights, page types,
+  trigger patterns and keywords for long pages are in [`data/checks.json`](data/checks.json).
+- Graph nodes have German names like in the explainer (`seiten_laden`, `pruefen`); helpers are
+  English. Comments are German and explain *why*.
+- `make test` runs 43 unit tests for everything that works without a model.
 
-❗️ Submissions are not handled on Devpost but via this URL only:
-http://hackapertus.ch/online-hack/submissions
+## Commands
 
-The submission must: 
-1. follow the template repo and include all prerequisite files and definitions
-2. follow the specified input/output formats
-3. run in a Docker container, launched with `make run` from the root of the project
-4. run end-to-end when judges try to run it
+| Command | What it does |
+|---|---|
+| `make run` / `make demo` | Docker: web UI / one headless check (for the jury) |
+| `make setup` | local virtual environment with all runtime packages |
+| `make index` | split the statutes into passages (needed once for local runs) |
+| `make app` | web UI locally, without Docker |
+| `make check SHOP=…` | check one shop, report in `output/` |
+| `make eval` | check all test shops and compare with the answer keys |
+| `make test` | unit tests, no model or key needed |
+| `make setup-search` · `make search` · `make report` | optional: retrieval experiment, report PDF |
 
-### Git repo (URL)
-- Create your repo from this template (**Use this template**) and work in the `track_2b/` challenge directory. Delete the other track challenge directories.
-- Keep `track_2b/` as it is: don't rename it or move its files.
-- Set the repo to PUBLIC (Settings --> Collaborators --> Manage Visibility)
-- Submit the URL of YOUR Git repo.
+## Apertus fully offline
 
-### Technical Report (pdf)
-- Update [technical_report.md](technical_report.md) in this repository with all the details for your submission.
-- Upload a pdf of your technical report to this directory, named as `TeamName_Report.pdf`.
-- Format: pdf, max. 6 pages w/o references
-- Submit the pdf of the technical report.
+On a Mac with Apple Silicon, Apertus 1.5 8B runs as a 4-bit MLX model with an OpenAI-compatible
+API. The project only needs the three variables pointed at it:
 
-### Demo video (URL)
-- Max. 2 min demo video of your prototype
+```bash
+python3 -m venv apertus-lokal/.venv && apertus-lokal/.venv/bin/pip install mlx-lm
+apertus-lokal/.venv/bin/hf download m1rkocasu/Apertus-v1.5-8B-text-MLX-4bit-DWQ --local-dir apertus-lokal/model
+apertus-lokal/.venv/bin/mlx_lm.server --model apertus-lokal/model --port 8080 \
+    --chat-template-args '{"enable_thinking": false}'
+export LLM_NAME=apertus-lokal/model LLM_BASE_URL=http://127.0.0.1:8080/v1 LLM_API_KEY=local
+make check SHOP=testshop:bergwiese      # from Docker use host.docker.internal instead of 127.0.0.1
+```
 
-### Dataset (URL) - optional, depending on your project
-Submitted datasets must comply with our guidelines for responsibly sourced datasets.
+The 4-bit model works but is less accurate (see the evaluation). On a GPU server, vLLM serves the
+full open weights the same way.
 
-- Create a user account on Hugging Face
-- Clone our dataset template on Hugging Face: https://huggingface.co/datasets/HackApertus/online_hack_template
-- Complete the dataset card with all required information
-- Upload your dataset. It should consist of the following components:
-    - evaluation dataset (i.e. individual test cases)
-    - model response dataset (i.e. the model response to each test case)
-    - metadata file (i.e. additional information about each test case; where relevant, this file must contain instance-level licensing information) 
-- Make sure your dataset access control is set to PUBLIC
-- Provide the URL of _your_ data set
+## How the Track 2B requirements are met
 
+| Requirement | Where |
+|---|---|
+| Built with Apertus; role of other models described | Apertus 1.5 8B makes every judgement. gpt-oss-120b was used only during development before the Apertus key arrived; multilingual-e5-small only in the optional retrieval experiment. [Report §3](technical_report.md#3-use-of-apertus) |
+| Template structure, `track_2b/` unchanged | `README.md`, `technical_report.md`, `Makefile`, `src/`, `data/`, `docs/` |
+| Runs in Docker with `make run`, end-to-end | [`Dockerfile`](Dockerfile), [`Makefile`](Makefile); uses `LLM_NAME`, `LLM_BASE_URL`, `LLM_API_KEY` |
+| Target architecture (on-premise, air-gapped, Swiss cloud) | all three; [report §2](technical_report.md#2-architecture). Statutes are in the image; the only runtime dependency is the Apertus endpoint |
+| `data/` under 100 MB | about 9 MB (statutes 8.4 MB, test shops, checklist) |
+| Technical report, PDF, max. 6 pages | [`technical_report.md`](technical_report.md), [`AlexSuter_Report.pdf`](AlexSuter_Report.pdf) |
+| Demo video, max. 2 min | link in the report header |
+| Dataset (optional) | not submitted separately; the 8 test shops with answer keys are in [`data/testshops/`](data/testshops/) |
 
----
+| Judging criterion | Where to look |
+|---|---|
+| Purposeful use of AI | the model judges, code verifies; rules measured with an ablation ([evaluation](docs/evaluation.md)) |
+| Technical rigour | test shops with answer keys, a live-site audit of 378 verdicts, a blind hold-out, 43 unit tests |
+| Value, cost & scalability | a real shop costs about USD 0.01; 18 parallel calls; text drafts for every defect |
+| Sovereign deployability | Swiss open model, statutes in the image, offline run demonstrated on a laptop |
+| Implementation feasibility | `make run`; limits stated honestly in [report §6](technical_report.md#6-limitations) |
 
-## ⚖️ Judging Criteria
+## Data and privacy
 
-1. Purposeful use of AI
-2. Technical rigour
-3. Value, cost & scalability
-4. Sovereign deployability
-5. Implementation feasibility
+- The statutes (fedlex, public domain) and the fictional test shops are in the repository.
+- Reports on real shops and the audit keys quote third-party websites. They stay local in
+  `output/` (git-ignored). The only real shop named in the documents is the author's own, nuvate.ch.
+- API keys live only in `.env` (git-ignored, never in the image).
 
-Judges use a Scale 0–5 per dimension.
+## License
 
----
-
-## Support
-
-**Licensing requirements**
-Please check our Terms & Conditions (6. What you build is open source):
-https://hackapertus.ch/terms-and-conditions
-
-## FAQ
-💡 https://hackapertus.ch/faq
-
-## Contact
-💬 In case you have questions, join the conversation on Discord or send an email to “hello@hackapertus.ch”
+Code: Apache-2.0. Documentation and checklist: CC-BY-4.0. Test shops: CDLA-Permissive-2.0.
+Statutes: official enactments, free to use (Art. 5 URG).

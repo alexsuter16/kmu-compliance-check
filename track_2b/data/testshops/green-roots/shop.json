@@ -1,0 +1,30 @@
+{
+  "name": "Green Roots Kaffee GmbH",
+  "branche": "Kaffeerösterei",
+  "sprache": "de",
+  "rolle": "Positivbeispiele: belegte Klima-Aussage und korrekter Einführungspreis; Lücken im Bestellablauf",
+  "eingebaute_maengel": [
+    "Bestellablauf nirgends beschrieben",
+    "Keine Angaben zu Bestellbestätigung und Korrekturmöglichkeit (bewusst «unklar»)"
+  ],
+  "erwartet": {
+    "impressum_identitaet": "erfuellt",
+    "firma_handelsregister": "erfuellt",
+    "bestellschritte": "fehlt",
+    "eingabefehler": "unklar",
+    "bestellbestaetigung": "unklar",
+    "preise_chf": "erfuellt",
+    "preise_zuschlaege": "erfuellt",
+    "streichpreise": "erfuellt",
+    "datenschutz_grundinfo": "erfuellt",
+    "datenschutz_ausland": "erfuellt",
+    "tracking_transparenz": "erfuellt",
+    "newsletter_einwilligung": "erfuellt",
+    "irrefuehrende_angaben": "erfuellt",
+    "klima_claims": "erfuellt",
+    "swissness": "erfuellt",
+    "agb_fairness": "erfuellt",
+    "agb_verfuegbar": "erfuellt",
+    "eu_vorlagen": "erfuellt"
+  }
+}

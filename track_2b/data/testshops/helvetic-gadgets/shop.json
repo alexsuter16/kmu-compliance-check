@@ -1,0 +1,33 @@
+{
+  "name": "Helvetic Gadgets GmbH",
+  "branche": "Elektronik-Zubehör",
+  "sprache": "de",
+  "rolle": "Preise, Swissness und AGB: mehrere harte Verstösse",
+  "eingebaute_maengel": [
+    "Preise ohne MWST, vorgezogene Recyclinggebühr separat",
+    "Fiktive «UVP» der eigenen Marke als Vergleichspreis",
+    "Künstliche Verknappung «nur noch 2 Stück» bei allen Produkten, «Testsieger» ohne Quelle",
+    "«Swiss Made» trotz Herstellung in China",
+    "Vollständiger Ausschluss jeder Gewährleistung, Preisänderung nach Bestellung"
+  ],
+  "erwartet": {
+    "impressum_identitaet": "erfuellt",
+    "firma_handelsregister": "erfuellt",
+    "bestellschritte": "erfuellt",
+    "eingabefehler": "erfuellt",
+    "bestellbestaetigung": "erfuellt",
+    "preise_chf": "teilweise",
+    "preise_zuschlaege": "fehlt",
+    "streichpreise": "fehlt",
+    "datenschutz_grundinfo": "erfuellt",
+    "datenschutz_ausland": "erfuellt",
+    "tracking_transparenz": "erfuellt",
+    "newsletter_einwilligung": "nicht_anwendbar",
+    "irrefuehrende_angaben": "fehlt",
+    "klima_claims": "nicht_anwendbar",
+    "swissness": "fehlt",
+    "agb_fairness": "fehlt",
+    "agb_verfuegbar": "erfuellt",
+    "eu_vorlagen": "erfuellt"
+  }
+}
