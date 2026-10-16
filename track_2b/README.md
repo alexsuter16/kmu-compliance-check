@@ -8,6 +8,8 @@ Apertus drafts the missing text, e.g. the paragraph on data transfers abroad.
 
 > Pre-check, not legal advice. Every report says so.
 
+**Demo video (2 min):** https://www.youtube.com/watch?v=TMmmkfqVIfs
+
 ## Run it
 
 ```bash
@@ -107,7 +109,7 @@ full open weights the same way.
 | Target architecture (on-premise, air-gapped, Swiss cloud) | all three; [report §2](technical_report.md#2-architecture). Statutes are in the image; the only runtime dependency is the Apertus endpoint |
 | `data/` under 100 MB | about 9 MB (statutes 8.4 MB, test shops, checklist) |
 | Technical report, PDF, max. 6 pages | [`technical_report.md`](technical_report.md), [`AlexSuter_Report.pdf`](AlexSuter_Report.pdf) |
-| Demo video, max. 2 min | link in the report header |
+| Demo video, max. 2 min | [https://www.youtube.com/watch?v=TMmmkfqVIfs](https://www.youtube.com/watch?v=TMmmkfqVIfs) (1:57) |
 | Dataset (optional) | not submitted separately; the 8 test shops with answer keys are in [`data/testshops/`](data/testshops/) |
 
 | Judging criterion | Where to look |

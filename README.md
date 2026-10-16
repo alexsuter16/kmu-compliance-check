@@ -11,6 +11,8 @@ Hack Apertus 2026 · Track 2B (own project) · Alex Suter (solo).
 
 > Pre-check, not legal advice.
 
+**Demo video (2 min):** https://www.youtube.com/watch?v=TMmmkfqVIfs
+
 ## Run it
 
 The project lives in [`track_2b/`](track_2b/) as the template requires.

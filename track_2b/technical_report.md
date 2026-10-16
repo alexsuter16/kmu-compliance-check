@@ -5,7 +5,7 @@ A sovereign compliance pre-check for Swiss online shops, built with Apertus 1.5.
 - **Track:** Track 2B — Own Project
 - **Event:** Online (Hack Apertus, 01.–16.10.2026)
 - **Team:** Alex Suter (solo)
-- **Demo:** `video link`
+- **Demo:** https://www.youtube.com/watch?v=TMmmkfqVIfs
 - **Code:** https://github.com/alexsuter16/kmu-compliance-check
 
 ## 1. Summary
