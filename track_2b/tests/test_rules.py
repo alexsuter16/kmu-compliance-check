@@ -93,16 +93,16 @@ class EvidenceTest(unittest.TestCase):
 
     def test_invisible_characters_and_joined_lines_are_ignored(self):
         """Echte Fälle: Null-Breite-Leerzeichen im Impressum; Adresszeilen vom Modell mit Komma verbunden."""
-        pages = [{"text": "Planted Foods AG\u200b\nKemptpark 32/34\n8310 Kemptthal"}]
-        self.assertTrue(quote_found("Planted Foods AG, Kemptpark 32/34, 8310 Kemptthal", pages))
-        self.assertEqual(verified_quote("NIKIN AG", [{"text": "NIKIN AG\nGraben 33"}]), "NIKIN AG")
+        pages = [{"text": "Beispiel Foods AG\u200b\nIndustriestrasse 32/34\n8310 Musterdorf"}]
+        self.assertTrue(quote_found("Beispiel Foods AG, Industriestrasse 32/34, 8310 Musterdorf", pages))
+        self.assertEqual(verified_quote("MUSTER AG", [{"text": "MUSTER AG\nGraben 33"}]), "MUSTER AG")
 
     def test_address_from_separate_lines_is_accepted_part_by_part(self):
         """Echter Fall: Das Modell fasst Firma, Adresse und E-Mail aus verschiedenen Zeilen zusammen."""
-        pages = [{"text": "Ochsner Sport AG\nAllmendstrasse 25\n8953 Dietikon\nTelefon 044 000 00 00\nservice@ochsnersport.ch"}]
-        self.assertEqual(verified_quote("Ochsner Sport AG, Allmendstrasse 25, CH-8953 Dietikon, service@ochsnersport.ch", pages),
-                         "Ochsner Sport AG … Allmendstrasse 25 … CH-8953 Dietikon … service@ochsnersport.ch")
-        self.assertIsNone(verified_quote("Ochsner Sport AG, Bahnhofstrasse 1, 8001 Zürich", pages))
+        pages = [{"text": "Sport Muster AG\nMusterweg 25\n8953 Musterhausen\nTelefon 044 000 00 00\nservice@sport-muster.example"}]
+        self.assertEqual(verified_quote("Sport Muster AG, Musterweg 25, CH-8953 Musterhausen, service@sport-muster.example", pages),
+                         "Sport Muster AG … Musterweg 25 … CH-8953 Musterhausen … service@sport-muster.example")
+        self.assertIsNone(verified_quote("Sport Muster AG, Bahnhofstrasse 1, 8001 Zürich", pages))
 
     def test_short_or_clearly_different_quotes_must_match_exactly(self):
         pages = [{"text": "Versand gratis. Mit Ihrer Bestellung melden wir Sie automatisch für unseren Newsletter an."}]

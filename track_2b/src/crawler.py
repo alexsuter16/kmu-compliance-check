@@ -380,7 +380,7 @@ class LiveShop:
     def crawl(self) -> list[Page]:
         home = self._get_home(self.start_url)
         swiss = self._swiss_alternate(home)
-        if swiss:                                       # z.B. sigg.com (Euro) → sigg.ch (Franken)
+        if swiss:                                       # z.B. marke.com (Euro) → marke.ch (Franken)
             print(f"  Schweizer Fassung des Shops: {swiss}", file=sys.stderr)
             home = self._get_home(swiss)
         base = f"{urlparse(home.url).scheme}://{urlparse(home.url).netloc}"

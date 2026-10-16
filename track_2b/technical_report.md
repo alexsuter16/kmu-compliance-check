@@ -104,6 +104,7 @@ The crawler fetches only public addresses and checks every redirect, so a crafte
 
 - **gpt-oss-120b** (via a LiteLLM proxy) was used only during development, before the Apertus key was available. It is not part of the solution path.
 - **multilingual-e5-small** is used only for the optional retrieval experiment (`make search`). It is not part of the image.
+- **Claude (Anthropic)** was used as a coding assistant during development and, in the evaluation only, as independent reviewer agents that audited real-shop verdicts against the live websites (section 5). It is not part of the solution path.
 
 ## 4. Data
 

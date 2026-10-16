@@ -25,7 +25,7 @@ import re
 from difflib import SequenceMatcher
 
 MIN_PART_CHARS = 12        # kürzere Bruchstücke zwischen «…» sind zu unspezifisch zum Vergleichen …
-MIN_EXACT_CHARS = 6        # … ein kurzes Zitat wie «CHF 119.00» oder «NIKIN AG» muss als ganze Wörter passen
+MIN_EXACT_CHARS = 6        # … ein kurzes Zitat wie «CHF 119.00» oder «MUSTER AG» muss als ganze Wörter passen
 MAX_QUOTE_CHARS = 200      # so lang darf «beleg» laut SYSTEM_PROMPT sein
 QUOTE_MARKS = "\"'„“”«»"  # Anführungszeichen, die das Modell um ein Zitat setzt
 MIN_FUZZY_WORDS = 8        # erst ab dieser Länge darf ein Zitat leicht abweichen …
@@ -91,7 +91,7 @@ def _found_word_for_word(candidate: str, pages: list[dict]) -> bool:
 
 
 def all_parts_on_one_page(quote: str, pages: list[dict]) -> str | None:
-    """Ein Zitat aus mehreren Zeilen oder Sätzen («Manor AG, Rebgasse 34, 4058 Basel, info@manor.ch»):
+    """Ein Zitat aus mehreren Zeilen oder Sätzen («Muster AG, Seestrasse 1, 8000 Zürich, info@muster.example»):
     Stehen alle Teile als ganze Wörter auf derselben Seite, gilt es – mit «…» zwischen den Teilen.
 
     Das Modell überspringt dabei manchmal einen Satz und bricht bei 200 Zeichen mitten im Wort ab
